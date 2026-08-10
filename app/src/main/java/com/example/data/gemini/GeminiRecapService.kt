@@ -1,12 +1,16 @@
 package com.example.data.gemini
 
+import android.app.Application
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 import org.json.JSONArray
 import org.json.JSONObject
 
-class GeminiRecapService(private val apiKey: String) {
+class GeminiRecapService(
+    private val context: Application,
+    private val apiKey: String
+) {
 
     fun generateRecapScript(promptText: String): String {
         return try {
@@ -21,7 +25,7 @@ class GeminiRecapService(private val apiKey: String) {
                     val contentObj = JSONObject().apply {
                         val parts = JSONArray().apply {
                             val partObj = JSONObject().apply {
-                                put("text", "You are an expert movie recap creator. Listen to the video audio and generate a Burmese movie recap script with timed subtitles: $promptText")
+                                put("text", "Analyze the movie scene audio. Generate line-by-line Burmese movie recap subtitles with timeline: $promptText")
                             }
                             put(partObj)
                         }
@@ -51,5 +55,20 @@ class GeminiRecapService(private val apiKey: String) {
         } catch (e: Exception) {
             "Error: ${e.localizedMessage}"
         }
+    }
+
+    // StudioViewModel မှ တောင်းဆိုထားသော Function များ
+    fun generateRecapTimeline(videoPath: String?): String {
+        return generateRecapScript("Video path: ${videoPath ?: "default"}")
+    }
+
+    fun generateFallbackSegments(): List<String> {
+        return listOf(
+            "ဇာတ်လမ်းစတင်ချိန်မှာတော့ မြို့တော်ကြီးရဲ့ မှောင်မိုက်တဲ့ ညတစ်ညမှာ...",
+            "ဇာတ်လိုက်ဟာ သဲလွန်စအသစ်တွေကို ရှာဖွေတွေ့ရှိခဲ့ပြီး...",
+            "ရုတ်တရက်ဆိုသလိုပဲ မထင်မှတ်ထားတဲ့ တိုက်ခိုက်မှုနဲ့အတူ...",
+            "သူ့ရဲ့ ရဲရင့်တဲ့ ဆုံးဖြတ်ချက်ကြောင့် နောက်ဆုံး တိုက်ပွဲဆီသို့...",
+            "နောက်ဆုံးမှာတော့ အမှန်တရား ပေါ်ပေါက်သွားခဲ့ပြီး..."
+        )
     }
 }
