@@ -1,0 +1,6 @@
+{
+  "name": "Movies Recap Studio",
+  "description": "AI-powered movie recap studio with original audio muting, precise Burmese voiceover alignment, timed English subtitles, interactive sync previewer, and one-click MP4 export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
