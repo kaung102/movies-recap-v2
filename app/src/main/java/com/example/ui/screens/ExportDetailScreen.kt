@@ -1,8 +1,16 @@
 package com.example.ui.screens
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -30,43 +38,6 @@ fun ExportDetailScreen(
             Button(onClick = onNavigateBack) {
                 Text(text = "Back")
             }
-        }
-    }
-}
-                            }
-                            context.startActivity(Intent.createChooser(shareIntent, "Share Recap"))
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = StudioGold, contentColor = DarkCanvas),
-                    shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Icon(Icons.Default.Share, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Share MP4 Video", style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold))
-                }
-
-                Button(
-                    onClick = onNavigateBack,
-                    colors = ButtonDefaults.buttonColors(containerColor = DarkSurface, contentColor = TextPrimary),
-                    shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("Back to Studio")
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun SpecItemRow(title: String, desc: String, icon: androidx.compose.ui.graphics.vector.ImageVector, color: Color) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(18.dp))
-        Spacer(modifier = Modifier.width(8.dp))
-        Column {
-            Text(title, style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold), color = TextPrimary)
-            Text(desc, style = MaterialTheme.typography.labelSmall, color = TextSecondary)
         }
     }
 }
